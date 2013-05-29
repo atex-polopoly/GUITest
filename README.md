@@ -83,8 +83,10 @@ Write you own Agents
 ==================
 
 
-WebDriver lifecycle & configuration
+WebDriver configuration and lifecycle
 ===================
+
+*Configuration*
 
 The abstract class WebDriverProvider is responsible of both initiating and tearing down WebDriver.
 Unless you provide a custom implementation through java.util.ServiceLoader a FirefoxDriver will be instantiated by default.
@@ -98,8 +100,6 @@ package example;
 
 public class MyWebDriverProvider extends WebDriverProvider {
 
-    private static final Logger LOG = Logger.getLogger(FirefoxWebDriverProvider.class.getCanonicalName());
-
     @Override
     public WebDriver initDriver() {
         return new MyCustomWebDriver();
@@ -110,14 +110,17 @@ public class MyWebDriverProvider extends WebDriverProvider {
 
 
 ```bash
-echo "example.MyWebDriverProvider" > META-INF/services
+echo "example.MyWebDriverProvider" > META-INF/services/com.polopoly.guitest.provider.WebDriverProvider
 ```
 
 
 
-The default behaviour is to create a new instance of the driver for each test run. You can change this by overriding the method WebDriverProvider
+*Lifecycle*
 
 
+The default behaviour is to create a new instance of the driver for each test run.
+
+You can change this by overriding the method WebDriverProvider.shutDownDriver in you project provider class.
 
 
 
