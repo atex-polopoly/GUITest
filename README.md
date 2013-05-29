@@ -86,7 +86,7 @@ Write you own Agents
 WebDriver configuration and lifecycle
 ===================
 
-*Configuration*
+**Configuration**
 
 The abstract class WebDriverProvider is responsible of both initiating and tearing down WebDriver.
 Unless you provide a custom implementation through java.util.ServiceLoader a FirefoxDriver will be instantiated by default.
@@ -114,9 +114,7 @@ echo "example.MyWebDriverProvider" > META-INF/services/com.polopoly.guitest.prov
 ```
 
 
-
-*Lifecycle*
-
+**Lifecycle**
 
 The default behaviour is to create a new instance of the driver for each test run.
 
