@@ -7,7 +7,6 @@ import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
-import org.openqa.selenium.WebDriver;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,9 +50,7 @@ public class PolopolyWebTestRunner extends BlockJUnit4ClassRunner {
             super.runChild(method, notifier);
         } finally {
             LOG.log(LOG_LEVEL, "resetting WebDriver");
-            WebDriver webDriver = injector.getInstance(WebDriver.class);
-            webDriver.quit(); // quit webdriver
-            webDriver = null; // setting driver to null -> WebDriverProvider will re-instantiate.
+            injector.getInstance(DriverShutdownHook.class).shutDownDriver();
         }
     }
 

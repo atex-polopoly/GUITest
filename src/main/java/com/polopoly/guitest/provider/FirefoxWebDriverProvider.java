@@ -15,7 +15,7 @@ public class FirefoxWebDriverProvider extends WebDriverProvider {
     private static final Logger LOG = Logger.getLogger(FirefoxWebDriverProvider.class.getCanonicalName());
 
     @Override
-    public WebDriver getDriver() {
+    public WebDriver initDriver() {
         FirefoxProfile firefoxProfile = new FirefoxProfile();
         try {
             JavaScriptError.addExtension(firefoxProfile);

@@ -1,13 +1,15 @@
 package com.polopoly.guitest.provider;
 
 import com.google.inject.Provider;
+import com.polopoly.guitest.framework.DriverShutdownHook;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Guice Provider with a thread local scope.
+ * Guice Provider with a thread local scope, it takes
+ * care both of initialization and shutdown for the driver.
  *
  */
-public abstract class WebDriverProvider implements Provider<WebDriver> {
+public abstract class WebDriverProvider implements Provider<WebDriver>, DriverShutdownHook {
 
     private ThreadLocal<WebDriver> threadLocal = new ThreadLocal<WebDriver>();
 
@@ -15,7 +17,7 @@ public abstract class WebDriverProvider implements Provider<WebDriver> {
     public synchronized WebDriver get() {
         WebDriver driver = threadLocal.get();
             if (driver == null || !active(driver)) {
-            driver = getDriver();
+            driver = initDriver();
             threadLocal.set(driver);
         }
         return driver;
@@ -30,6 +32,12 @@ public abstract class WebDriverProvider implements Provider<WebDriver> {
         return true;
     }
 
-    protected abstract WebDriver getDriver();
+    protected abstract WebDriver initDriver();
+
+    public final void shutDownDriver() {
+        threadLocal.get().quit(); // quit webdriver
+        threadLocal.set(null);
+    }
+
 
 }

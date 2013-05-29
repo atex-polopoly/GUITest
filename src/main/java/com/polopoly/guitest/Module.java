@@ -3,6 +3,7 @@ package com.polopoly.guitest;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
+import com.polopoly.guitest.framework.DriverShutdownHook;
 import com.polopoly.guitest.provider.FirefoxWebDriverProvider;
 import com.polopoly.guitest.provider.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,9 @@ public class Module extends AbstractModule {
             LOG.severe("cannot read properties file!");
             throw new RuntimeException(e);
         }
-        bind(WebDriver.class).toProvider(loadWebDriverProvider());
+        WebDriverProvider webdriverProvider = loadWebDriverProvider();
+        bind(WebDriver.class).toProvider(webdriverProvider);
+        bind(DriverShutdownHook.class).toInstance(webdriverProvider);
     }
 
 
