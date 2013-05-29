@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class GuiBaseAgent {
 
-    private static Logger LOG = Logger.getLogger(LoginAgent.class.getName());
+    private static Logger LOG = Logger.getLogger(GuiBaseAgent.class.getName());
 
     private final String baseUrl;
     private final WebDriver webDriver;
@@ -28,11 +28,11 @@ public class GuiBaseAgent {
 
 
     @Inject
-    public GuiBaseAgent(@Named("baseUrl") String baseUrl, WebDriver webDriver, WaitAgent waitAgent, FrameAgent frameAgent) {
+    public GuiBaseAgent(@Named("baseUrl") String baseUrl, WebDriver webDriver, WaitAgent waitAgent, FrameAgent frameAgent, FrameAgent frameAgent1) {
         this.baseUrl = baseUrl;
         this.webDriver = webDriver;
         this.waitAgent = waitAgent;
-        this.frameAgent = frameAgent;
+        this.frameAgent = frameAgent1;
         this.toolbar = new ToolbarAgent(webDriver, waitAgent, this);
         this.treeselect = new TreeSelectAgent(webDriver, waitAgent, this);
     }
@@ -62,11 +62,11 @@ public class GuiBaseAgent {
 
         waitAgent.waitForElement(By.id("mainframeset"));
 
-        frameAgent.navFrame();
+        navFrame();
         waitAgent.waitForPageToLoad();
-        frameAgent.userSessionFrame();
+        userSessionFrame();
         waitAgent.waitForPageToLoad();
-        frameAgent.workFrame();
+        workFrame();
         waitAgent.waitForPageToLoad();
 
         webDriver.switchTo().defaultContent();
@@ -127,28 +127,8 @@ public class GuiBaseAgent {
      * @return this agent
      */
     private GuiBaseAgent selectFrame(String frame) {
-
-        webDriver.switchTo().window(webDriver.getWindowHandle());
-        webDriver.switchTo().frame(frame);
+        frameAgent.selectFrame(frame);
         return this;
-    }
-
-
-    /**
-     * Selects returns the name of the current frame
-     */
-    public String getCurrentFrame(){
-        String frame = null;
-        try{
-            WebElement el = (WebElement) ((JavascriptExecutor) webDriver).executeScript(
-                    "return window.frameElement");
-
-            webDriver.switchTo().defaultContent();
-            frame = el.getAttribute("name");
-            return frame;
-        } finally{
-            selectFrame(frame);
-        }
     }
 
     /**

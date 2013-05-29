@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ContentTreeAgent {
 
@@ -36,7 +37,7 @@ public class ContentTreeAgent {
 
 
 
-    private void toggle(String label, Boolean expand) {
+    private ContentTreeAgent toggle(String label, Boolean expand) {
         List<WebElement> navEntries = webDriver.findElements(By.xpath("//div[contains(@class,'contentTree')]" +
                 "//div[contains(@class,'tree')]" +
                 "//li[a[contains(@class, 'expander')]]"));
@@ -46,19 +47,27 @@ public class ContentTreeAgent {
                 WebElement expander = navEntry.findElement(By.xpath("./a[contains(@class, 'expander')]"));
                 if (expander.getAttribute("onclick").contains("shouldBeExpanded\":" + expand)) {
                     expander.click();
-                    return;
+                    // after the click we need to allow
+                    // for a delay for the javascript action to take place
+                    // otherwise drilling down the nav tree will fail
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    return this;
                 }
             }
         }
         throw new NoSuchElementException("could not find Content Tree element identified by label: " + label);
     }
 
-    public void collapse(String label) {
-        toggle(label, false);
+    public ContentTreeAgent collapse(String label) {
+        return toggle(label, false);
     }
 
-    public void expand(String label) {
-        toggle(label, true);
+    public ContentTreeAgent expand(String label) {
+        return toggle(label, true);
     }
 
 

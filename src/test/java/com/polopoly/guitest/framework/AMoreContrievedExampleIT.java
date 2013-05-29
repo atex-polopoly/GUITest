@@ -27,7 +27,7 @@ public class AMoreContrievedExampleIT {
     @Test
     public void createArticle() throws Exception {
         gui.loginAsSysadmin().navFrame();
-        contentTree.open("Greenfield Times");
+        contentTree.expand("SiteEngine").expand("Sites").open("Greenfield Times");
         gui.workFrame().selectTab("Articles & Resources");
         webDriver.findElement(By.xpath("//button[contains(text(), 'Create')]")).click();
         input.typeInTextfield("Title *", "my foolish article.");

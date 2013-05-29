@@ -1,7 +1,7 @@
 package com.polopoly.guitest.framework;
 
 import com.google.inject.Inject;
-import com.polopoly.guitest.agent.LoginAgent;
+import com.polopoly.guitest.agent.GuiBaseAgent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -9,12 +9,12 @@ import org.junit.runner.RunWith;
 public class YetAnotherTestIT {
 
     @Inject
-    private LoginAgent loginAgent;
+    private GuiBaseAgent gui;
 
 
     @Test
     public void loginAgain() {
-        loginAgent.login("emma", "emma");
+        gui.login("emma", "emma");
     }
 
 }

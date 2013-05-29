@@ -1,7 +1,7 @@
 package com.polopoly.guitest.framework;
 
 
-import com.polopoly.guitest.agent.LoginAgent;
+import com.polopoly.guitest.agent.GuiBaseAgent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -11,12 +11,12 @@ import javax.inject.Inject;
 public class AnotherLoginIT {
 
     @Inject
-    private LoginAgent login;
+    private GuiBaseAgent gui;
 
 
     @Test
     public void loginAsSusperUser() {
-        login.loginAsSysadmin();
+        gui.loginAsSysadmin();
     }
 
 }
