@@ -38,7 +38,7 @@ public class PolopolyWebTestRunner extends BlockJUnit4ClassRunner {
     @Override
     protected Object createTest() throws Exception {
         Object obj = super.createTest();
-        LOG.log(LOG_LEVEL, "initiating evnironment for test injectors");
+        LOG.log(LOG_LEVEL, "initiating environment for test injectors");
         injector.injectMembers(obj);
         return obj;
     }

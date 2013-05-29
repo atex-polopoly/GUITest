@@ -1,6 +1,7 @@
-package com.polopoly.guitest.framework;
+package com.polopoly.guitest.integration;
 
 import com.google.inject.Inject;
+import com.polopoly.guitest.framework.PolopolyWebTestRunner;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

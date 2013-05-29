@@ -34,8 +34,7 @@ public class GuiLoginIT {
 ```
 
 
-
-create some content ....
+now create some content:
 
 ```java
 package com.polopoly.guitest.framework;
@@ -84,12 +83,44 @@ Write you own Agents
 ==================
 
 
-WebDriver lifecycle
-================
+WebDriver lifecycle & configuration
+===================
+
+The abstract class WebDriverProvider is responsible of both initiating and tearing down WebDriver.
+Unless you provide a custom implementation through java.util.ServiceLoader a FirefoxDriver will be instantiated by default.
+
+If you want to override this behaviour implement in your project the WebDriverProvider class and create a pointer to it in META-INF/services
+
+For instance:
+
+```java
+package example;
+
+public class MyWebDriverProvider extends WebDriverProvider {
+
+    private static final Logger LOG = Logger.getLogger(FirefoxWebDriverProvider.class.getCanonicalName());
+
+    @Override
+    public WebDriver initDriver() {
+        return new MyCustomWebDriver();
+    }
+
+}
+```
 
 
-Configure
-========
+```bash
+echo "example.MyWebDriverProvider" > META-INF/services
+```
+
+
+
+The default behaviour is to create a new instance of the driver for each test run. You can change this by overriding the method WebDriverProvider
+
+
+
+
+
 
 Integration with Polopoly TestBase
 ============================

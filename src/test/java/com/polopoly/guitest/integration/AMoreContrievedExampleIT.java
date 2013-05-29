@@ -1,9 +1,10 @@
-package com.polopoly.guitest.framework;
+package com.polopoly.guitest.integration;
 
 import com.google.inject.Inject;
 import com.polopoly.guitest.agent.ContentTreeAgent;
 import com.polopoly.guitest.agent.GuiBaseAgent;
 import com.polopoly.guitest.agent.InputAgent;
+import com.polopoly.guitest.framework.PolopolyWebTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
