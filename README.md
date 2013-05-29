@@ -132,12 +132,15 @@ You can change this by overriding the method WebDriverProvider.shutDownDriver in
 Integration with Polopoly TestBase
 ============================
 
+TBD
+
 
 Note about installing
 =====================
 
 When you run "mvn install" you must have access to a Polopoly runtime for the integration tests phase to complete without errors.
-Use 'polopoly.guitest.properties' if you don't have Polopoy running on localhost to point to another Polopoly runtime. For instance:
+
+Use 'polopoly.guitest.properties' if you don't have Polopoy running on localhost. For instance:
 
     mvn -Dpolopoly.guitest.properties=src/test/resources/webtests.integration.properties 
 
