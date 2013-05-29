@@ -56,75 +56,11 @@ public class ContentNavigatorAgent {
                 contentIdString,
                 "work");
         waitAgent.waitForPageToLoad();
-        
-//        final ContentId contentId;
-//        try {
-//            contentId = getContentId(contentIdString);
-//        } catch (Exception e) {
-//            throw new AssertionFailedError("Failed to verify that the requested " +
-//            		"content was opened. ContentId: " + contentIdString 
-//            		+ ", Exception: " + e.getMessage());
-//        }
-//        
-//        final WebDriver webDriver = guiAgent.getWebDriver();
-//        final String checkedContentIdString = contentId.getContentIdString();
-//        
-//        
-//        
-//        // Fallback
-//        if (!isContentOpen(webDriver, checkedContentIdString)) {
-//            
-//            AssertRetry.assertRetry(OPEN_CONTENT_WAIT_MAX_TIME, 1000, new AssertRetry.Function() {
-//                public void doAssert() throws Exception {
-//                    guiAgent.agentFrame().workFrame();
-//                    guiAgent.agentActionEvent().triggerActionEvent(actionEventName, 
-//                            checkedContentIdString, "work");
-//                    guiAgent.agentWait().waitForPageToLoad();
-//                    
-//                    if (!isContentOpen(webDriver, checkedContentIdString)) {
-//                        throw new AssertionFailedError("The content with id: " 
-//                                + checkedContentIdString + " was never opened");
-//                    }
-//                }
-//            });
-//        }
-        
+
         return this;
     }
     
-    
-//    private boolean isContentOpen(final WebDriver webDriver, String contentIdString) {
-//        try {
-//            WebElement webElement = webDriver.findElement(
-//                    By.xpath("//div[@class='content-info' and contains(@id,'content-info-" + contentIdString + "')]"));
-//            
-//            if (webElement != null) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (NoSuchElementException e) {
-//            return false;
-//        }
-//    }
-    
-    
-//    private ContentId getContentId(String contentIdString) throws Exception {
-//        
-//         CMServer cmServer = TestApplication.getCmClient().getCMServer();
-//        
-//        ContentId contentId = null;
-//
-//        try {
-//            contentId = ContentIdFactory.createContentId(contentIdString);
-//        } catch (IllegalArgumentException iae) {
-//            ContentRead content = cmServer.getContent(new ExternalContentId(contentIdString));
-//            contentId = content.getContentId();
-//        }
-//
-//        return contentId;
-//    }
-    
+
     /**
      * Returns the current opened/active content's id
      * @return a content id
