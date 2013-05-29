@@ -79,8 +79,14 @@ public class AMoreContrievedExampleIT {
 Provided Agents
 =============
 
-Write you own Agents
+For an up-to-date list refer to the package __com.polopoly.guitest.agent__
+
+Write your own Agents
 ==================
+
+Project defined agents can be injected in exactly the same way provided agents are.
+
+Check the Agent007 and Agent007IT in the test source folder for an example of how to write/inject own agents.
 
 
 WebDriver configuration and lifecycle
