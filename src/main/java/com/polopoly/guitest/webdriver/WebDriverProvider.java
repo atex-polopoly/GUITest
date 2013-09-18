@@ -4,6 +4,10 @@ import com.atex.testinject.TestHooks;
 import com.google.inject.Provider;
 import org.openqa.selenium.WebDriver;
 
+import org.junit.runner.notification.RunNotifier;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.Statement;
+
 import java.util.logging.Logger;
 
 /**
@@ -47,13 +51,12 @@ public class WebDriverProvider implements Provider<WebDriver>, TestHooks {
     }
 
     @Override
-    public void before() {
-        LOG.info("webDriverProvider test hook: before");
-    }
+    public void before(FrameworkMethod method, Object target, Statement statement) { }
 
     @Override
-    public void after() {
-        LOG.info("webDriverProvider test hook: after");
+    public void after(FrameworkMethod method, RunNotifier notifier) {
+        if (threadLocal.get() == null) return;
+        LOG.fine("webDriverProvider test hook: after");
         threadLocal.get().quit();
         threadLocal.set(null);
     }

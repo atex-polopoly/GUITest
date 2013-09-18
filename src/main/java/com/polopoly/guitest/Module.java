@@ -3,7 +3,6 @@ package com.polopoly.guitest;
 
 import com.atex.testinject.TestHooks;
 import com.google.inject.AbstractModule;
-import com.google.inject.Binder;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
 import com.polopoly.guitest.webdriver.FirefoxWebDriverInitializer;
@@ -14,7 +13,10 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.ServiceLoader;
 import java.util.logging.Logger;
 
 public class Module extends AbstractModule {
