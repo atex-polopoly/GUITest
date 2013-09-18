@@ -1,4 +1,4 @@
-package com.polopoly.guitest.provider;
+package com.polopoly.guitest.webdriver;
 
 import net.jsourcerer.webdriver.jserrorcollector.JavaScriptError;
 import org.openqa.selenium.WebDriver;
@@ -10,12 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class FirefoxWebDriverProvider extends WebDriverProvider {
+public class FirefoxWebDriverInitializer implements WebDriverInitializer {
 
-    private static final Logger LOG = Logger.getLogger(FirefoxWebDriverProvider.class.getCanonicalName());
+    private static final Logger LOG = Logger.getLogger(FirefoxWebDriverInitializer.class.getCanonicalName());
+
 
     @Override
-    public WebDriver initDriver() {
+    public WebDriver initialize() {
         FirefoxProfile firefoxProfile = new FirefoxProfile();
         try {
             JavaScriptError.addExtension(firefoxProfile);
@@ -26,7 +27,5 @@ public class FirefoxWebDriverProvider extends WebDriverProvider {
         System.err.println("created webdriver: " + driver);
         return driver;
     }
-
-
 
 }

@@ -18,7 +18,7 @@ import com.polopoly.guitest.agent.GuiBaseAgent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(PolopolyWebTestRunner.class)
+@RunWith(TestInjectRunner.class)
 public class GuiLoginIT {
 
     @Inject
@@ -48,7 +48,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@RunWith(PolopolyWebTestRunner.class)
+@RunWith(TestInjectRunner.class)
 public class AMoreContrievedExampleIT {
 
     @Inject
@@ -116,7 +116,7 @@ public class MyWebDriverProvider extends WebDriverProvider {
 
 
 ```bash
-echo "example.MyWebDriverProvider" > META-INF/services/com.polopoly.guitest.provider.WebDriverProvider
+echo "example.MyWebDriverProvider" > META-INF/services/com.polopoly.guitest.webdriver.WebDriverProvider
 ```
 
 

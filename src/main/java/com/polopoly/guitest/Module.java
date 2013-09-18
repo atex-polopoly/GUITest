@@ -1,11 +1,14 @@
 package com.polopoly.guitest;
 
 
+import com.atex.testinject.TestHooks;
 import com.google.inject.AbstractModule;
+import com.google.inject.Binder;
+import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
-import com.polopoly.guitest.framework.DriverShutdownHook;
-import com.polopoly.guitest.provider.FirefoxWebDriverProvider;
-import com.polopoly.guitest.provider.WebDriverProvider;
+import com.polopoly.guitest.webdriver.FirefoxWebDriverInitializer;
+import com.polopoly.guitest.webdriver.WebDriverInitializer;
+import com.polopoly.guitest.webdriver.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
@@ -29,26 +32,29 @@ public class Module extends AbstractModule {
             LOG.severe("cannot read properties file!");
             throw new RuntimeException(e);
         }
-        WebDriverProvider webdriverProvider = loadWebDriverProvider();
-        bind(WebDriver.class).toProvider(webdriverProvider);
-        bind(DriverShutdownHook.class).toInstance(webdriverProvider);
+        WebDriverProvider.setDriverInitializer(bindInitializer());
+        WebDriverProvider webDriverProvider = new WebDriverProvider();
+        Multibinder<TestHooks> testHooksBindings =
+                Multibinder.newSetBinder(binder(), TestHooks.class);
+        testHooksBindings.addBinding().toInstance(webDriverProvider);
+        bind(WebDriver.class).toProvider(webDriverProvider);
     }
 
 
-    private WebDriverProvider loadWebDriverProvider() {
-        ServiceLoader<WebDriverProvider> serviceLoader = ServiceLoader.load(WebDriverProvider.class);
-        List<WebDriverProvider> providers = new ArrayList<WebDriverProvider>();
-        for (WebDriverProvider provider : serviceLoader) {
-            providers.add(provider);
+    private WebDriverInitializer bindInitializer() {
+        ServiceLoader<WebDriverInitializer> serviceLoader = ServiceLoader.load(WebDriverInitializer.class);
+        List<WebDriverInitializer> initializers = new ArrayList<WebDriverInitializer>();
+        for (WebDriverInitializer initializer : serviceLoader) {
+            initializers.add(initializer);
         }
-        if (providers.isEmpty()) {
-            return defaultWebDriverProvider();
+        if (initializers.isEmpty()) {
+            return defaultWebDriverInitializer();
         } else {
-            if (providers.size() > 1) {
+            if (initializers.size() > 1) {
                 LOG.info("multiple bindings for WebDriver found, picking up first in list");
             }
-            LOG.info("binding WebDriver provider to " + providers.get(0).getClass().getCanonicalName());
-            return providers.get(0);
+            LOG.info("binding WebDriver webdriver to " + initializers.get(0).getClass().getCanonicalName());
+            return initializers.get(0);
         }
     }
 
@@ -72,8 +78,8 @@ public class Module extends AbstractModule {
     }
 
 
-    private WebDriverProvider defaultWebDriverProvider() {
-        return new FirefoxWebDriverProvider();
+    private WebDriverInitializer defaultWebDriverInitializer() {
+        return new FirefoxWebDriverInitializer();
     }
 
 }

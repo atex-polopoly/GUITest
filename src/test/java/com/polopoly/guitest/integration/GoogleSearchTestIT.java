@@ -1,7 +1,7 @@
 package com.polopoly.guitest.integration;
 
+import com.atex.testinject.TestInjectRunner;
 import com.google.inject.Inject;
-import com.polopoly.guitest.framework.PolopolyWebTestRunner;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-@RunWith(PolopolyWebTestRunner.class)
+@RunWith(TestInjectRunner.class)
 public class GoogleSearchTestIT {
 
     @Inject

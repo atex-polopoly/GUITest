@@ -1,16 +1,16 @@
 package com.polopoly.guitest.integration;
 
+import com.atex.testinject.TestInjectRunner;
 import com.google.inject.Inject;
 import com.polopoly.guitest.agent.ContentTreeAgent;
 import com.polopoly.guitest.agent.GuiBaseAgent;
 import com.polopoly.guitest.agent.InputAgent;
-import com.polopoly.guitest.framework.PolopolyWebTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@RunWith(PolopolyWebTestRunner.class)
+@RunWith(TestInjectRunner.class)
 public class AMoreContrievedExampleIT {
 
     @Inject
