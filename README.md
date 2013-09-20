@@ -1,7 +1,7 @@
 Polopoly GUITest
 ==============
 
-web test framework for the Polopoly GUI.
+web test framework for the Polopoly GUI based on [TestNJ](https://github.com/atex-polopoly/testNJ)
 
 
 few examples
@@ -18,7 +18,7 @@ import com.polopoly.guitest.agent.GuiBaseAgent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(TestInjectRunner.class)
+@RunWith(TestNJRunner.class)
 public class GuiLoginIT {
 
     @Inject
@@ -48,7 +48,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@RunWith(TestInjectRunner.class)
+@RunWith(TestNJRunenr.class)
 public class AMoreContrievedExampleIT {
 
     @Inject
@@ -128,11 +128,6 @@ You can change this by overriding the method WebDriverProvider.shutDownDriver in
 
 
 
-
-Integration with Polopoly TestBase
-============================
-
-TBD
 
 
 Note about installing
