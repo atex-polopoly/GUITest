@@ -117,8 +117,8 @@
     </dependency>
 
     <dependency>
-      <groupId>com.atex</groupId>
-      <artifactId>testinject</artifactId>
+      <groupId>com.polopoly</groupId>
+      <artifactId>testNJ</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 

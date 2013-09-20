@@ -1,14 +1,14 @@
 package com.polopoly.guitest.integration;
 
 
-import com.atex.testinject.TestInjectRunner;
 import com.google.inject.Inject;
 import com.polopoly.guitest.agent.Agent007;
+import com.polopoly.testnj.TestNJRunner;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(TestInjectRunner.class)
+@RunWith(TestNJRunner.class)
 public class Agent007IT {
 
 

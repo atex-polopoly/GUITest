@@ -1,12 +1,11 @@
 package com.polopoly.guitest.webdriver;
 
-import com.atex.testinject.TestHooks;
 import com.google.inject.Provider;
-import org.openqa.selenium.WebDriver;
-
+import com.polopoly.testnj.TestCallbacks;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.openqa.selenium.WebDriver;
 
 import java.util.logging.Logger;
 
@@ -15,7 +14,7 @@ import java.util.logging.Logger;
  * care both of initialization and shutdown for the driver.
  *
  */
-public class WebDriverProvider implements Provider<WebDriver>, TestHooks {
+public class WebDriverProvider implements Provider<WebDriver>, TestCallbacks {
 
     private ThreadLocal<WebDriver> threadLocal = new ThreadLocal<WebDriver>();
     private static final Logger LOG = Logger.getLogger(WebDriverProvider.class.getCanonicalName());

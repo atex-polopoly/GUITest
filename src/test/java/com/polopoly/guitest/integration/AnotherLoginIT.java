@@ -1,14 +1,14 @@
 package com.polopoly.guitest.integration;
 
 
-import com.atex.testinject.TestInjectRunner;
 import com.polopoly.guitest.agent.GuiBaseAgent;
+import com.polopoly.testnj.TestNJRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-@RunWith(TestInjectRunner.class)
+@RunWith(TestNJRunner.class)
 public class AnotherLoginIT {
 
     @Inject

@@ -1,14 +1,12 @@
 package com.polopoly.guitest;
 
 
-import com.atex.testinject.TestContext;
-import com.atex.testinject.TestHooks;
 import com.google.inject.AbstractModule;
-import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
 import com.polopoly.guitest.webdriver.FirefoxWebDriverInitializer;
 import com.polopoly.guitest.webdriver.WebDriverInitializer;
 import com.polopoly.guitest.webdriver.WebDriverProvider;
+import com.polopoly.testnj.TestNJContext;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
@@ -38,7 +36,7 @@ public class Module extends AbstractModule {
         WebDriverProvider.setDriverInitializer(bindInitializer());
         WebDriverProvider webDriverProvider = new WebDriverProvider();
 
-        TestContext.registerTestHook(binder(), webDriverProvider);
+        TestNJContext.addCallbacks(binder(), webDriverProvider);
 
         bind(WebDriver.class).toProvider(webDriverProvider);
     }
