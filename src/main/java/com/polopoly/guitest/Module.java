@@ -1,6 +1,7 @@
 package com.polopoly.guitest;
 
 
+import com.atex.testinject.TestContext;
 import com.atex.testinject.TestHooks;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
@@ -36,9 +37,9 @@ public class Module extends AbstractModule {
         }
         WebDriverProvider.setDriverInitializer(bindInitializer());
         WebDriverProvider webDriverProvider = new WebDriverProvider();
-        Multibinder<TestHooks> testHooksBindings =
-                Multibinder.newSetBinder(binder(), TestHooks.class);
-        testHooksBindings.addBinding().toInstance(webDriverProvider);
+
+        TestContext.registerTestHook(binder(), webDriverProvider);
+
         bind(WebDriver.class).toProvider(webDriverProvider);
     }
 
