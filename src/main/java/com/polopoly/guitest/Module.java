@@ -36,7 +36,7 @@ public class Module extends AbstractModule {
         WebDriverProvider.setDriverInitializer(bindInitializer());
         WebDriverProvider webDriverProvider = new WebDriverProvider();
 
-        TestNJContext.addCallbacks(binder(), webDriverProvider);
+        TestNJContext.addCallback(webDriverProvider);
 
         bind(WebDriver.class).toProvider(webDriverProvider);
     }
