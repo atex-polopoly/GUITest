@@ -84,7 +84,7 @@ public class ContentCreatorAgent {
         
         String selectLocator = selectLocatorPrefix + "/../" + selectLocatorSuffix;
         if (webDriver.findElements(By.xpath(selectLocator)).isEmpty()) {
-            selectLocator = selectLocatorPrefix + "/following-sibling::*/" + selectLocatorSuffix; 
+            selectLocator = selectLocatorPrefix + "/following-sibling::*//" + selectLocatorSuffix; 
         }
         Select selectBox = new Select(webDriver.findElement(By.xpath(selectLocator)));
         selectBox.selectByVisibleText(optionLabel);
